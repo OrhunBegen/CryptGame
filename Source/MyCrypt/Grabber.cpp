@@ -51,8 +51,8 @@ void UGrabber::Grab()
 	
 	UE_LOG(	LogTemp, Display, TEXT("Grabber Location: %s , %s"), *Start.ToString(), *End.ToString());
 	
-	DrawDebugSphere(GetWorld(), End , 10, 10, FColor::Blue, false, 5);
-	DrawDebugLine(GetWorld(),Start, End, FColor::Red , false , 5);
+	//DrawDebugSphere(GetWorld(), End , 10, 10, FColor::Blue, false, 5);
+	//DrawDebugLine(GetWorld(),Start, End, FColor::Red , false , 5);
 	
 	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
 
@@ -69,6 +69,8 @@ void UGrabber::Grab()
 
 	if (HasHit)
 	{
+		DrawDebugSphere(GetWorld(), HitResult.Location ,10 , 10, FColor::Green, false, 5 );
+		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint ,10 , 10, FColor::Red, false, 5 );
 		AActor* HitActor = HitResult.GetActor();
 
 		UE_LOG (LogTemp, Display , TEXT("Hitted Actor name: %s"), *HitActor->GetActorNameOrLabel());
@@ -78,3 +80,4 @@ void UGrabber::Grab()
 		UE_LOG(LogTemp, Display, TEXT("No Actor Hit"));
 	}
 }
+
