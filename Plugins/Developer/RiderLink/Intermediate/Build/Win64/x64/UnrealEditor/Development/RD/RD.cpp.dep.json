@@ -1,11 +1,11 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\unrealengineprojects\\mycrypt\\plugins\\developer\\riderlink\\source\\rd\\rd.cpp",
+        "Source": "d:\\unrealengineprojects\\cryptgame\\plugins\\developer\\riderlink\\source\\rd\\rd.cpp",
         "ProvidedModule": "",
         "Includes": [
-            "d:\\unrealengineprojects\\mycrypt\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
-            "d:\\unrealengineprojects\\mycrypt\\plugins\\developer\\riderlink\\source\\rd\\rd.h",
+            "d:\\unrealengineprojects\\cryptgame\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
+            "d:\\unrealengineprojects\\cryptgame\\plugins\\developer\\riderlink\\source\\rd\\rd.h",
             "c:\\program files\\epic games\\ue_5.2\\engine\\source\\runtime\\core\\public\\logging\\logmacros.h",
             "c:\\program files\\epic games\\ue_5.2\\engine\\source\\runtime\\core\\public\\containers\\unrealstring.h",
             "c:\\program files\\epic games\\ue_5.2\\engine\\source\\runtime\\core\\public\\coretypes.h",
