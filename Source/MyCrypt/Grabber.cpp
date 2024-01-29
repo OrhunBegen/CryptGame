@@ -2,7 +2,6 @@
 
 
 #include "Grabber.h"
-
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
@@ -14,8 +13,6 @@ UGrabber::UGrabber()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -29,13 +26,11 @@ void UGrabber::BeginPlay()
 	{
 		UE_LOG(LogTemp, Display , TEXT("%s"),	*PhysicsHandle->GetName() );
 	}
-	
 	else
 	{
 		UE_LOG(LogTemp, Warning , TEXT("No Physics Handle Component found on") );
 	}
 }
-
 
 // Called every frame
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -55,8 +50,9 @@ void UGrabber::Grab()
 	FVector End = Start + GetForwardVector()*MaxGrabDistance;
 	
 	UE_LOG(	LogTemp, Display, TEXT("Grabber Location: %s , %s"), *Start.ToString(), *End.ToString());
-	DrawDebugLine(GetWorld(),Start, End, FColor::Red , false , 30);
+	
 	DrawDebugSphere(GetWorld(), End , 10, 10, FColor::Blue, false, 5);
+	DrawDebugLine(GetWorld(),Start, End, FColor::Red , false , 5);
 	
 	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
 
