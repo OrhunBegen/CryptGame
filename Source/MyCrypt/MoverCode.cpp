@@ -29,17 +29,16 @@ void UMoverCode::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	/*const AActor *Owner= GetOwner();
+	const AActor *Owner= GetOwner();
 
 	const FString Name = *Owner->GetActorNameOrLabel();
 	const FString Location = Owner->GetActorLocation().ToString();
 	
-	UE_LOG(LogTemp, Warning, TEXT("gotten component: %s, %s"), *Name, *Location);
+//	UE_LOG(LogTemp, Warning, TEXT("gotten component: %s, %s"), *Name, *Location);
 	
 
 	if(SMove)
 	{
-
 		FVector CurrentLocation = GetOwner()-> GetActorLocation();
 	
 		FVector TargetLocation =OriginalLocation + MoveOffset;
@@ -49,7 +48,8 @@ void UMoverCode::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 		FVector NewLocation = FMath::VInterpConstantTo(CurrentLocation , TargetLocation, DeltaTime, Speed);
 
 		GetOwner()->SetActorLocation(NewLocation);
+		
+	}
 
-	}*/
 }
 

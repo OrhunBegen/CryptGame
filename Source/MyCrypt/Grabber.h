@@ -31,10 +31,11 @@ public:
 	void Grab();
 	
 private:
+	
 	UPROPERTY(EditAnywhere)
-	float MaxGrabDistance = 300.0f;
+	float MaxGrabDistance = 500;
 
 	UPROPERTY(EditAnywhere)
-	float GrabRadius = 400.0f;
+	float GrabRadius = 100;
 	
 };

@@ -7,6 +7,7 @@
 #include "DrawDebugHelpers.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 
+
 // Sets default values for this component's properties
 UGrabber::UGrabber()
 {
@@ -26,7 +27,6 @@ void UGrabber::BeginPlay()
 	UPhysicsHandleComponent* PhysicsHandle =  GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 	if(PhysicsHandle != nullptr)
 	{
-	
 		UE_LOG(LogTemp, Display , TEXT("%s"),	*PhysicsHandle->GetName() );
 	}
 	
@@ -41,10 +41,9 @@ void UGrabber::BeginPlay()
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
 
-	
 }
+
 void UGrabber::Release()
 {
 	UE_LOG(LogTemp, Display, TEXT("Released Grabber"));
@@ -53,24 +52,29 @@ void UGrabber::Release()
 void UGrabber::Grab()
 {
 	FVector Start = GetComponentLocation();
-	FVector End = GetForwardVector()*MaxGrabDistance;
-	//DrawDebugLine(GetWorld(),Start, End, FColor::Blue );
-
-
+	FVector End = Start + GetForwardVector()*MaxGrabDistance;
+	
+	UE_LOG(	LogTemp, Display, TEXT("Grabber Location: %s , %s"), *Start.ToString(), *End.ToString());
+	DrawDebugLine(GetWorld(),Start, End, FColor::Red , false , 30);
+	DrawDebugSphere(GetWorld(), End , 10, 10, FColor::Blue, false, 5);
+	
 	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
 
 	FHitResult HitResult;
 	
 	bool HasHit = GetWorld()->SweepSingleByChannel
-	(	HitResult,
+	    (
+		HitResult,
 		Start,End,
 		FQuat::Identity,
 		ECC_GameTraceChannel2,
-		Sphere);
+		Sphere
+		);
 
 	if (HasHit)
 	{
 		AActor* HitActor = HitResult.GetActor();
+
 		UE_LOG (LogTemp, Display , TEXT("Hitted Actor name: %s"), *HitActor->GetActorNameOrLabel());
 	}
 	else
