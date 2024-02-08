@@ -31,6 +31,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Grab();
+
+	bool GetGrabbableInReach(FHitResult& OutHitResult) const;
 	
 private:
 	
