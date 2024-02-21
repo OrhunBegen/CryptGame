@@ -3,15 +3,30 @@
 
 #include "TriggerComponent.h"
 
+UTriggerComponent::UTriggerComponent()
+{
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
 void UTriggerComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	UE_LOG(LogTemp, Warning, TEXT("Trigger Component alive!"));
 }
 void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	TArray<AActor*>Actors;
+	
+	GetOverlappingActors(Actors);
+	
+	if(Actors.Num() > 0)
+	{
+		
+		FString Name = Actors[0]->GetActorNameOrLabel();
+		
+		UE_LOG(LogTemp, Warning, TEXT("Triggered %s"), *Name);
+	}
 
 	
 }
