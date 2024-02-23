@@ -40,20 +40,22 @@ void UMoverCode::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 //	UE_LOG(LogTemp, Warning, TEXT("gotten component: %s, %s"), *Name, *Location);
 	
 
+	FVector TargetLocation =OriginalLocation;
+	
 	if(ShouldMove)
 	{
-		FVector CurrentLocation = GetOwner()-> GetActorLocation();
-	
-		FVector TargetLocation =OriginalLocation + MoveOffset;
-	
-		float Speed = FVector::Distance(OriginalLocation, TargetLocation)/ MoveTime;
-		
-		FVector NewLocation = FMath::VInterpConstantTo(CurrentLocation , TargetLocation, DeltaTime, Speed);
-
-		GetOwner()->SetActorLocation(NewLocation);
+		TargetLocation = OriginalLocation + MoveOffset;
 		
 	}
+	
+	FVector CurrentLocation = GetOwner()-> GetActorLocation();
+	
+	float Speed = MoveOffset.Length() / MoveTime;
+		
+	FVector NewLocation = FMath::VInterpConstantTo(CurrentLocation , TargetLocation, DeltaTime, Speed);
 
+	GetOwner()->SetActorLocation(NewLocation);
+	
 }
 
 void UMoverCode::SetShouldMove(bool NewShouldMove)

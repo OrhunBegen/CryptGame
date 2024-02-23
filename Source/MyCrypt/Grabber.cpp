@@ -1,12 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Grabber.h"
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
-
-
-
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -15,7 +11,6 @@ UGrabber::UGrabber()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 }
-
 
 // Called when the game starts
 void UGrabber::BeginPlay()
@@ -64,7 +59,7 @@ void UGrabber::Release()
 	}
 	
 	
-	//UE_LOG(LogTemp, Display, TEXT("Released Grabber"));
+	//UE_LOG(LogTemp, Warning, TEXT("Released Grabber"));
 }
 
 void UGrabber::Grab()
@@ -80,8 +75,14 @@ void UGrabber::Grab()
 	{
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
 		HitComponent->WakeAllRigidBodies();
+		HitComponent->SetSimulatePhysics(true);
 
-		HitResult.GetActor()->Tags.Add("Grabbed");
+		AActor* HitActor = HitResult.GetActor();
+
+		
+		HitActor->Tags.Add("Grabbed");
+
+		HitActor->DetachFromActor(	FDetachmentTransformRules::KeepWorldTransform);
 		
 		
 		PhysicsHandle->GrabComponentAtLocationWithRotation
@@ -124,6 +125,5 @@ bool UGrabber::GetGrabbableInReach(FHitResult& OutHitResult) const
 		ECC_GameTraceChannel2,
 		Sphere
 		);
-	
 	
 }
