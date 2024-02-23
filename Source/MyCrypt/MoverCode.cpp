@@ -33,11 +33,14 @@ void UMoverCode::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 	const FString Name = *Owner->GetActorNameOrLabel();
 	const FString Location = Owner->GetActorLocation().ToString();
+
+
+	
 	
 //	UE_LOG(LogTemp, Warning, TEXT("gotten component: %s, %s"), *Name, *Location);
 	
 
-	if(SMove)
+	if(ShouldMove)
 	{
 		FVector CurrentLocation = GetOwner()-> GetActorLocation();
 	
@@ -53,3 +56,7 @@ void UMoverCode::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 }
 
+void UMoverCode::SetShouldMove(bool NewShouldMove)
+{
+	ShouldMove = NewShouldMove;
+}

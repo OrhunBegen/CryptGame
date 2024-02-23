@@ -33,7 +33,9 @@ public:
 	
 	FVector OriginalLocation;
 
-	UPROPERTY(EditAnywhere)
-	bool SMove = false;
+	
+	bool ShouldMove = false;
+	
+	void SetShouldMove(bool ShouldMove);
 
 };
