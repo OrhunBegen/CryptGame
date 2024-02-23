@@ -13,10 +13,6 @@ void UTriggerComponent::BeginPlay()
 	Super::BeginPlay();
 }
 
-
-
-
-
 void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
@@ -52,11 +48,6 @@ void UTriggerComponent::SetMover(UMoverCode* NewMover)
 }
 
 
-
-
-
-
-
 AActor* UTriggerComponent::GetAcceptableActor() const
 {
 	
@@ -66,7 +57,9 @@ AActor* UTriggerComponent::GetAcceptableActor() const
 	
 	for (AActor* Actor : Actors)
 	{
-		if ( Actor-> ActorHasTag (TagName))
+		const bool AcceptableTag = Actor->ActorHasTag(TagName);
+		const bool GrabbedTag = Actor->ActorHasTag("Grabbed");
+		if (AcceptableTag && !GrabbedTag)
 		{
 			return Actor;
 		}
